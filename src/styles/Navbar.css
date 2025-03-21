@@ -9,12 +9,11 @@ body {
 }
 
 nav {
-    background-color: transparent;
-    padding: 0; /* Remove padding to ensure tight alignment */
+    background-color: rgba(0, 0, 0, 0.651);
+    padding: 0;
     display: flex;
-    justify-content: flex-start; /* Align everything to the left */
+    justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid white; /* Thinner line for the border */
     position: relative;
     height: 50px;
 }
@@ -25,22 +24,21 @@ nav::after {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1px; /* Thinner line */
-    background-color: white;
+    height: 1px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    height: 100%; /* Ensure the container takes the full height of the navbar */
-    padding: 0; /* Remove any padding */
-    margin-right: 20px; /* Add some space between the logo and the links */
+    height: 100%;
+    padding: 0;
+    margin-right: 20px;
 }
 
 .logo {
-    height: 100%; /* Make the logo fill the height of the navbar */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the logo scales properly */
+    height: 100%;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links-container {
@@ -53,48 +51,54 @@ nav ul {
     display: flex;
     list-style: none;
     height: 100%;
-    align-items: center; /* Align text vertically */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav li {
-    margin: 0 15px; /* Reduced space between the items */
+    margin: 0 15px;
     display: flex;
-    align-items: center; /* Align text vertically */
-    height: 100%; /* Ensure li takes full height */
+    align-items: center;
+    height: 100%;
 }
 
 nav a {
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 12px;
     font-weight: 600;
     position: relative;
-    padding: 0; /* Remove padding */
-    text-transform: uppercase; /* Makes the text all caps */
-    opacity: 0.7; /* Slightly less opaque initially */
-    transition: opacity 0.3s ease; /* Smooth transition for opacity */
-    display: inline-block; /* Use inline-block for better control */
-    height: 100%; /* Ensure links take full height */
-    line-height: 50px; /* Align the text vertically with the height of the navbar */
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    height: 100%;
+    line-height: 50px;
 }
 
 nav a:hover {
-    opacity: 1; /* Full opacity on hover */
+    opacity: 1;
 }
 
+/* Underline effect */
 nav a::before {
     content: "";
     position: absolute;
-    bottom: 8px;
-    left: 0;
-    width: 0%;
-    height: 2px; /* Thicker line for visibility */
+    bottom: 12px; /* Slightly below text */
+    left: 50%;
+    width: 100%; /* Full width */
+    height: 2px;
     background-color: rgb(202, 0, 0);
-    transition: width 0.3s ease-out;
+    transform: translateX(-50%) scaleX(0); /* Starts collapsed */
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
 }
 
 nav a:hover::before {
-    width: 100%; /* Expand the underline on hover */
+    transform: translateX(-50%) scaleX(1); /* Expands smoothly */
+}
+
+nav a:not(:hover)::before {
+    transform: translateX(-50%) scaleX(0); /* Shrinks back smoothly */
 }

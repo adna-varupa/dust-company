@@ -1,10 +1,12 @@
 import React from 'react';
+import '../styles/Home.css';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to Our Dust Cleaning Service</h1>
-      <p>We specialize in cleaning large amounts of dust using state-of-the-art machinery.</p>
+    <div className="home-container">
+      <h1>Industrijsko Čišćenje Bez Kompromisa</h1>
+      <p>preduzeće za pružanje usluga iz oblasti profesionalnog čišćenja industrijskih i komunalnih objekata</p>
+      <button className="contact-btn">Saznaj više o nama</button>
     </div>
   );
 };

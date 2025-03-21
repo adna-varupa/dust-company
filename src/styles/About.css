@@ -1,0 +1,91 @@
+body {
+    font-family: Poppins, sans-serif;
+    background-color: #f0f0f0; /* Laka, neutralna pozadina */
+    margin: 0;
+    padding: 0;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.6); /* Tamna pozadina sa smanjenim opacitetom */
+    border-radius: 20px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.about-header h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.about-content p {
+    font-size: 18px;
+    opacity: 0.85;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #f1f1f1;
+    text-align: justify;
+    padding: 0 20px;
+}
+
+.about-footer {
+    text-align: center;
+}
+
+.contact-btn {
+    background: #c60000;
+    color: white;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-btn:hover {
+    background: #a60000;
+    transform: scale(1.1);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px;
+        margin: 40px;
+    }
+
+    .about-header h2 {
+        font-size: 28px;
+    }
+
+    .about-content p {
+        font-size: 16px;
+    }
+
+    .contact-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}

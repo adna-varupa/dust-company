@@ -1,4 +1,69 @@
-body{
-    font-family: 'Poppins', sans-serif;
+body {
+    font-family: Poppins;
+}
+
+.home-container {
+    max-width: 800px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    color: #fff; /* White text for good contrast */
+    height: 40vh; /* Fixed height of 40% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff; /* White heading */
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.contact-btn {
+    background: #c60000; /* Red color for button */
     color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #a60000; /* Darker red on hover */
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding: 25px;
+        margin: 40px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .contact-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

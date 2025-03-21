@@ -1,0 +1,114 @@
+/* General Footer Styling */
+.footer {
+    background-color: #000; /* Solid black background */
+    color: white;
+    padding: 15px 20px; /* Slightly larger padding for better spacing */
+    text-align: center; /* Center-align the text */
+    border-top: 2px solid #c60000; /* Red top border for emphasis */
+    font-size: 12px; /* Font size for better readability */
+    margin: 0; /* Remove outer margin */
+  }
+  
+  /* Footer Content Layout */
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid layout with 3-4 columns */
+    gap: 15px; /* Space between columns */
+    max-width: 1200px; /* Limit the max-width of the content */
+    margin: 0 auto; /* Center the content */
+  }
+  
+  /* Footer Section Styling */
+  .footer-section {
+    padding: 0;
+  }
+  
+  .footer-section h3 {
+    font-size: 14px; /* Slightly larger font size for section headings */
+    font-weight: 600;
+    color: #e60000; /* Red color for headings */
+    margin-bottom: 8px; /* Margin between heading and text */
+  }
+  
+  .footer-section p {
+    font-size: 10px; /* Smaller font size for text */
+    color: #ccc; /* Light grey color for text */
+    line-height: 1.4;
+    margin-bottom: 5px; /* Reduced space between text items */
+  }
+  
+  /* Social Media Button */
+  .footer-social {
+    margin-top: 10px; /* Top margin for spacing */
+    display: flex;
+    justify-content: center; /* Center the button */
+  }
+  
+  .footer-social .facebook-btn {
+    background-color: #c60000;
+    color: white;
+    padding: 6px 12px; 
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-flex;
+    align-items: center; /* Center the icon and text vertically */
+  }
+  
+  .footer-social .facebook-btn i {
+    margin-right: 8px; /* Space between icon and text */
+  }
+  
+  .footer-social .facebook-btn:hover {
+    background-color: #a60000;
+    transform: scale(1.05);
+  }
+  
+  /* Footer Bottom Section (Copyright and Links) */
+  .footer-bottom {
+    margin-top: 20px; /* Add margin for spacing */
+    font-size: 10px; /* Smaller font size for bottom text */
+    color: #999;
+  }
+  
+  .footer-copy {
+    font-size: 10px; /* Smaller font size for copyright */
+    color: #999;
+  }
+  
+  .footer-link {
+    font-size: 10px;
+    color: #999;
+  }
+  
+  .footer-link-text {
+    color: #e60000; /* Red color for links */
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-link-text:hover {
+    color: #c60000; /* Darker red on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr 1fr; /* 2 columns on smaller screens */
+    }
+  
+    .footer-section h3 {
+      font-size: 12px; /* Smaller headings */
+    }
+  
+    .footer-section p {
+      font-size: 9px; /* Smaller text size */
+    }
+  
+    .footer-bottom {
+      font-size: 9px; /* Smaller font size for the bottom */
+    }
+  }
+  
