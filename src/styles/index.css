@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App > .App-content {
+  flex-grow: 1;
+}
+
 /* Your existing styles */
 
 /* Custom Scrollbar Styles */

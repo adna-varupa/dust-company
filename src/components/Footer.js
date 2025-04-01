@@ -27,13 +27,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      <div className="footer-bottom">
-        <p>&copy; 2025 Dust Cleaning Company. All Rights Reserved.</p>
-        <p className="footer-link">
-          <a href="/privacy-policy" className="footer-link-text">Privacy Policy</a> | <a href="/terms-of-service" className="footer-link-text">Terms of Service</a>
-        </p>
-      </div>
     </footer>
   );
 };
