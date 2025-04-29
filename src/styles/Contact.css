@@ -1,0 +1,120 @@
+.contact-page {
+    background-color: transparent;
+    color: white;
+    padding: 60px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+    gap: 40px;
+    background-color: #000000b2;
+    padding: 50px;
+    border-radius: 10px;
+  }
+  
+  .contact-info {
+    flex: 1;
+    min-width: 280px;
+  }
+  
+  .contact-info h2 {
+    font-size: 2rem;
+    color: #e3342f;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info p {
+    color: #ccc;
+    margin-bottom: 25px;
+  }
+  
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+  }
+  
+  .contact-detail i {
+    color: #e3342f;
+    font-size: 1.2rem;
+  }
+  
+  .contact-detail a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-detail a:hover {
+    color: #e3342f;
+  }
+  
+  .contact-form {
+    flex: 1;
+    min-width: 300px;
+    background-color: #1a1a1ab9;
+  }
+  
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form label {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #ddd;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1f1f1fdc;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .contact-form textarea {
+    resize: vertical;
+  }
+  
+  .contact-form button {
+    margin-top: 20px;
+    background-color: #e3342f;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-form button:hover {
+    background-color: #cc1f1a;
+  }
+  
+  .success-message {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+  }
+  

@@ -1,0 +1,98 @@
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  border-top: 2px solid #c60000;
+  font-size: 16px; /* Slightly larger base font size */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  padding: 0;
+}
+
+.footer-section h3 {
+  font-size: 18px; /* Increased from 14px */
+  font-weight: 600;
+  color: #e60000;
+  margin-bottom: 8px;
+}
+
+.footer-section p {
+  font-size: 14px; /* Increased from 10px */
+  color: #ccc;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.footer-social {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-social .facebook-btn {
+  background-color: #c60000;
+  color: white;
+  padding: 6px 12px; 
+  font-size: 14px; /* Increased from 12px */
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-social .facebook-btn i {
+  margin-right: 8px;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 14px; /* Increased from 10px */
+  color: #999;
+}
+
+.footer-copy {
+  font-size: 14px; /* Increased from 10px */
+  color: #999;
+}
+
+.footer-link {
+  font-size: 14px; /* Increased from 10px */
+  color: #999;
+}
+
+.footer-link-text {
+  color: #e60000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-section h3 {
+    font-size: 16px;
+  }
+
+  .footer-section p {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+}

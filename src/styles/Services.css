@@ -1,0 +1,74 @@
+.info-container {
+    display: flex;
+    background-color: #000;
+    color: #fff;
+    padding: 50px;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .text-section {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .text-section h2 {
+    color: #c60000;
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+  
+  .cards-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    flex: 1;
+  }
+  
+  .card {
+    display: flex;
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(198, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(198, 0, 0, 0.2);
+    height: 250px;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(198, 0, 0, 0.3);
+  }
+  
+  .card img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .card-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1a1a1a;
+  }
+  
+  .card-content h3 {
+    color: #c60000;
+    margin-bottom: 15px;
+    font-size: 20px;
+    padding-right: 15px;
+  }
+  
+  .card p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.8;
+    padding: 20px;
+  }
+  
