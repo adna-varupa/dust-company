@@ -48,11 +48,11 @@ export default function Contact() {
             <div className="contact-detail">
               <i className="fab fa-facebook"></i>
               <a 
-                href="https://www.facebook.com/yourpage" 
+                href="https://www.facebook.com/dust.company" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                Facebook stranica
+                Dust Company
               </a>
             </div>
           </div>

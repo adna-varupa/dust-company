@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/About.css';
+import { Link } from 'react-router-dom';
+
 
 const About = () => {
   return (
@@ -17,7 +19,7 @@ const About = () => {
         </p>
       </div>
       <footer className="about-footer">
-        <button className="contact-btn">Kontaktirajte nas</button>
+      <Link to="/contact" className="contact-btn">Kontaktirajte nas</Link>
       </footer>
     </section>
   );

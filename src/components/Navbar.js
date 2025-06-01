@@ -47,8 +47,8 @@ const Navbar = () => {
           <li><Link to="/" onClick={closeMenu}>Početna</Link></li>
           <li><Link to="/onama" onClick={closeMenu}>O nama</Link></li>
           <li><Link to="/usluge" onClick={closeMenu}>Usluge</Link></li>
-          <li><Link to="/specifications" onClick={closeMenu}>Tehnička specifikacija opreme</Link></li>
-          <li><Link to="/gallery" onClick={closeMenu}>Galerija</Link></li>
+          <li><Link to="/oprema" onClick={closeMenu}>Tehnička specifikacija opreme</Link></li>
+          <li><Link to="/galerija" onClick={closeMenu}>Galerija</Link></li>
           <li><Link to="/references" onClick={closeMenu}>Reference</Link></li>
           <li><Link to="/contact" onClick={closeMenu}>Kontakt</Link></li>
         </ul>

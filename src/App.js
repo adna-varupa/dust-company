@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Usluge from './pages/Usluge';
 import Contact from './pages/Contact';
+import Galerija from './pages/Galerija';
+import Oprema from './pages/Oprema';
 
 
 function App() {
@@ -18,8 +20,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/onama" element={<About />} />
+          <Route path="/oprema" element={<Oprema />} />
           <Route path="/usluge" element={<Usluge />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/galerija" element={<Galerija />} />
         </Routes>
       </div>
       <Footer />

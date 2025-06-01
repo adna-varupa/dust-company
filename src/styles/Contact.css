@@ -1,120 +1,238 @@
+/* Base structure for sticky footer layout */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+main {
+  flex: 1;
+}
+
+/* Contact page styles with mobile-first approach */
 .contact-page {
-    background-color: transparent;
-    color: white;
-    padding: 60px 20px;
-    font-family: 'Segoe UI', sans-serif;
+  background-color: transparent;
+  color: white;
+  padding: 15px;
+  padding-top: 70px; /* Space for navbar */
+  padding-bottom: 30px;
+  min-height: 65vh; /* Push footer down */
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 25px;
+  background-color: rgba(0, 0, 0, 0.75); /* More readable alpha */
+  padding: 25px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-info {
+  width: 100%;
+}
+
+.contact-info h2 {
+  font-size: 1.75rem;
+  color: #e3342f;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+
+
+.contact-info p {
+  color: #ddd;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: flex-start; /* Better alignment on mobile */
+  gap: 12px;
+  font-size: 0.95rem;
+  padding: 4px 0; /* Increase touch target */
+}
+
+.contact-detail i {
+  color: #e3342f;
+  font-size: 1.2rem;
+  min-width: 20px; /* Ensure icon alignment */
+}
+
+.contact-detail a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  word-break: break-word; /* Prevent overflow */
+  padding: 2px 0; /* Increase touch target */
+}
+
+.contact-detail a:hover, 
+.contact-detail a:active {
+  color: #e3342f;
+}
+
+.contact-form {
+  width: 100%;
+  background-color: rgba(26, 26, 26, 0.85);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #eee;
+  font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 14px; /* Larger for touch */
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: rgba(31, 31, 31, 0.9);
+  color: white;
+  font-size: 16px; /* Prevent zoom on iOS */
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #e3342f;
+  box-shadow: 0 0 0 2px rgba(227, 52, 47, 0.2);
+}
+
+.contact-form button {
+  margin-top: 24px;
+  background-color: #e3342f;
+  color: white;
+  border: none;
+  padding: 14px; /* Larger for mobile */
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  width: 100%; /* Full width on mobile */
+  letter-spacing: 0.5px;
+}
+
+.contact-form button:hover,
+.contact-form button:active {
+  background-color: #cc1f1a;
+}
+
+.success-message {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 480px) {
+  .contact-detail {
+    margin-bottom: 5px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Add some breathing room between form elements */
+  .contact-form label {
+    margin-top: 16px;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+  .contact-page {
+    padding: 30px;
+    padding-top: 100px; /* Space for navbar */
+    padding-bottom: 40px;
+    min-height: 70vh;
   }
   
   .contact-container {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 40px;
     max-width: 1100px;
-    margin: auto;
     gap: 40px;
-    background-color: #000000b2;
-    padding: 50px;
-    border-radius: 10px;
   }
   
   .contact-info {
     flex: 1;
     min-width: 280px;
+    max-width: 45%;
   }
   
   .contact-info h2 {
     font-size: 2rem;
-    color: #e3342f;
-    margin-bottom: 10px;
   }
   
   .contact-info p {
-    color: #ccc;
-    margin-bottom: 25px;
-  }
-  
-  .contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 12px;
     font-size: 1rem;
-  }
-  
-  .contact-detail i {
-    color: #e3342f;
-    font-size: 1.2rem;
-  }
-  
-  .contact-detail a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .contact-detail a:hover {
-    color: #e3342f;
   }
   
   .contact-form {
     flex: 1;
-    min-width: 300px;
-    background-color: #1a1a1ab9;
-  }
-  
-  .contact-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .contact-form label {
-    margin-top: 10px;
-    margin-bottom: 6px;
-    font-weight: 500;
-    color: #ddd;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 4px;
-    background-color: #1f1f1fdc;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-  }
-  
-  .contact-form textarea {
-    resize: vertical;
+    min-width: 320px;
+    max-width: 50%;
   }
   
   .contact-form button {
-    margin-top: 20px;
-    background-color: #e3342f;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    width: auto;
+    padding: 12px 30px;
+  }
+}
+
+/* Desktop optimization */
+@media (min-width: 1024px) {
+  .contact-container {
+    padding: 50px;
   }
   
-  .contact-form button:hover {
-    background-color: #cc1f1a;
+  .contact-form {
+    padding: 30px;
   }
-  
-  .success-message {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-  }
-  
+}
