@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import '../styles/Home.css';
 import Services from '../components/Services';
 import { useLanguage } from '../context/LanguageContext';
+
+const EMAILJS_SERVICE_ID  = 'service_ss9teza';
+const EMAILJS_TEMPLATE_ID = 'template_1pui9bi';
+const EMAILJS_PUBLIC_KEY  = 'CgXzlUq-tR_eLSGOf';
 
 const Home = () => {
   const [formData, setFormData] = useState({ fullName: '', email: '', message: '' });
@@ -14,20 +19,30 @@ const Home = () => {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.fullName || !formData.email || !formData.message) {
-      setFormStatus({ submitted: false, error: true });
+      setFormStatus({ submitted: false, error: true, loading: false });
       return;
     }
-    try {
-      console.log('Form submitted:', formData);
+    setFormStatus({ submitted: false, error: false, loading: true });
+
+    emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'adffnavarupa03@gmail.com',
+      },
+      EMAILJS_PUBLIC_KEY
+    ).then(() => {
       setFormData({ fullName: '', email: '', message: '' });
-      setFormStatus({ submitted: true, error: false });
-    } catch (error) {
-      console.error('Submission error:', error);
-      setFormStatus({ submitted: false, error: true });
-    }
+      setFormStatus({ submitted: true, error: false, loading: false });
+    }).catch(() => {
+      setFormStatus({ submitted: false, error: true, loading: false });
+    });
   };
 
   return (
@@ -140,7 +155,9 @@ const Home = () => {
               <div className="success-message">{t('home_form_success')}</div>
             )}
 
-            <button type="submit" className="submit-btn">{t('home_form_submit')}</button>
+            <button type="submit" className="submit-btn" disabled={formStatus.loading}>
+              {formStatus.loading ? '...' : t('home_form_submit')}
+            </button>
           </form>
         </div>
       </div>

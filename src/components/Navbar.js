@@ -46,9 +46,11 @@ const Navbar = () => {
           <li><Link to="/reference" onClick={closeMenu}>{t('nav_references')}</Link></li>
           <li><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
           <li>
-            <button className="lang-toggle" onClick={() => { toggleLanguage(); closeMenu(); }}>
-              {language === 'bs' ? 'EN' : 'BS'}
-            </button>
+            <div className="lang-toggle">
+              <span className={language === 'en' ? 'lang-active' : 'lang-inactive'} onClick={() => { if (language !== 'en') { toggleLanguage(); closeMenu(); } }}>EN</span>
+              <span className="lang-divider">|</span>
+              <span className={language === 'bs' ? 'lang-active' : 'lang-inactive'} onClick={() => { if (language !== 'bs') { toggleLanguage(); closeMenu(); } }}>BS</span>
+            </div>
           </li>
         </ul>
       </div>
