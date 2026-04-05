@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import '../styles/Reference.css';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Reference() {
+  const { t } = useLanguage();
+
   useEffect(() => {
     const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
     if (navbar) {
@@ -33,12 +36,12 @@ export default function Reference() {
   return (
     <div className="reference-container">
       <div className="reference-content">
-        <h1>Naše reference</h1>
-        <p>Ponosni smo na dugogodišnju saradnju sa vodećim kompanijama u industriji.</p>
+        <h1>{t('reference_title')}</h1>
+        <p>{t('reference_subtitle')}</p>
         <div className="reference-image-container">
-          <img 
-            src="/images/reference.jpg" 
-            alt="Logos naših partnera i klijenata" 
+          <img
+            src="/images/reference.jpg"
+            alt={t('reference_img_alt')}
             className="reference-image"
           />
         </div>

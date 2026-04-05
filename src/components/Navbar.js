@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
-    // Prevent scrolling when menu is open
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-
-    // Clean up the effect
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -31,11 +25,11 @@ const Navbar = () => {
     <nav>
       <div className="logo-container">
         <Link to="/" onClick={closeMenu}>
-        <img src="/assets/logoo.png" alt="Logo" className="logo" />
+          <img src="/assets/logoo.png" alt="Logo" className="logo" />
         </Link>
       </div>
-      <div 
-        className={`hamburger ${isOpen ? 'active' : ''}`} 
+      <div
+        className={`hamburger ${isOpen ? 'active' : ''}`}
         onClick={toggleMenu}
       >
         <span></span>
@@ -44,13 +38,18 @@ const Navbar = () => {
       </div>
       <div className={`nav-links-container ${isOpen ? 'active' : ''}`}>
         <ul>
-          <li><Link to="/" onClick={closeMenu}>Početna</Link></li>
-          <li><Link to="/onama" onClick={closeMenu}>O nama</Link></li>
-          <li><Link to="/usluge" onClick={closeMenu}>Usluge</Link></li>
-          <li><Link to="/oprema" onClick={closeMenu}>Tehnička specifikacija opreme</Link></li>
-          <li><Link to="/galerija" onClick={closeMenu}>Galerija</Link></li>
-          <li><Link to="/reference" onClick={closeMenu}>Reference</Link></li>
-          <li><Link to="/contact" onClick={closeMenu}>Kontakt</Link></li>
+          <li><Link to="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
+          <li><Link to="/onama" onClick={closeMenu}>{t('nav_about')}</Link></li>
+          <li><Link to="/usluge" onClick={closeMenu}>{t('nav_services')}</Link></li>
+          <li><Link to="/oprema" onClick={closeMenu}>{t('nav_equipment')}</Link></li>
+          <li><Link to="/galerija" onClick={closeMenu}>{t('nav_gallery')}</Link></li>
+          <li><Link to="/reference" onClick={closeMenu}>{t('nav_references')}</Link></li>
+          <li><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
+          <li>
+            <button className="lang-toggle" onClick={() => { toggleLanguage(); closeMenu(); }}>
+              {language === 'bs' ? 'EN' : 'BS'}
+            </button>
+          </li>
         </ul>
       </div>
     </nav>

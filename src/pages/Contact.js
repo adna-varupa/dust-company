@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import '../styles/Contact.css'; // Import your CSS file for styling
+import '../styles/Contact.css';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLanguage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +15,6 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-
-    // Simulate form submission
     setTimeout(() => {
       setFormData({ name: '', email: '', message: '' });
       setSubmitted(false);
@@ -29,9 +25,8 @@ export default function Contact() {
     <div className="contact-page">
       <div className="contact-container">
         <div className="contact-info">
-          <h2>Kontaktirajte Nas</h2>
-          <p>Imate pitanja ili želite više informacija? Javite nam se!</p>
-          
+          <h2>{t('contact_title')}</h2>
+          <p>{t('contact_subtitle')}</p>
           <div className="contact-details">
             <div className="contact-detail">
               <i className="fas fa-phone"></i>
@@ -47,11 +42,7 @@ export default function Contact() {
             </div>
             <div className="contact-detail">
               <i className="fab fa-facebook"></i>
-              <a 
-                href="https://www.facebook.com/dust.company" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.facebook.com/dust.company" target="_blank" rel="noopener noreferrer">
                 Dust Company
               </a>
             </div>
@@ -61,38 +52,18 @@ export default function Contact() {
         <div className="contact-form">
           <form onSubmit={handleSubmit}>
             {submitted && (
-              <div className="success-message">
-                Vaša poruka je poslana! Odgovorit ćemo uskoro.
-              </div>
+              <div className="success-message">{t('contact_success')}</div>
             )}
-            <label>Ime i Prezime</label>
-            <input 
-              type="text" 
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required 
-            />
+            <label>{t('contact_name')}</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
 
             <label>Email</label>
-            <input 
-              type="email" 
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required 
-            />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-            <label>Poruka</label>
-            <textarea 
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="5"
-              required 
-            />
+            <label>{t('contact_message')}</label>
+            <textarea name="message" value={formData.message} onChange={handleChange} rows="5" required />
 
-            <button type="submit">Pošalji Poruku</button>
+            <button type="submit">{t('contact_submit')}</button>
           </form>
         </div>
       </div>

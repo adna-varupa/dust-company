@@ -1,8 +1,10 @@
 import '../styles/Usluge.css';
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 function MiningServices() {
   const [openIndex, setOpenIndex] = useState(null);
+  const { t } = useLanguage();
 
   const toggleSection = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -38,60 +40,36 @@ function MiningServices() {
 
   const industries = [
     {
-      title: "RUDARSTVO",
-      services: [
-        "Izvlačenje vacupress tehnikom ostataka ugljena, ugljene prašine, ugljenih muljeva",
-        "Čišćenje silosa, transportera, vagona, svodova, kolosijeka i dr.",
-        "Čišćenja u energetskim postrojenjima i kompresorskim stanicama"
-      ]
+      title: t('usluge_mining'),
+      services: [t('usluge_mining_1'), t('usluge_mining_2'), t('usluge_mining_3')]
     },
     {
-      title: "ENERGANE I TOPLANE",
-      services: [
-        "Usisavanje pepela, ugljena, koksa, ulja, zauljenih muljeva, trafo-ulja, gipsa...",
-        "Čišćenje grijaćih površina, dimnih kanala, silosa..."
-      ]
+      title: t('usluge_energy'),
+      services: [t('usluge_energy_1'), t('usluge_energy_2')]
     },
     {
-      title: "DRVNA INDUSTRIJA",
-      services: [
-        "Izvlačenje sječke, piljevine i drugih ostataka"
-      ]
+      title: t('usluge_wood'),
+      services: [t('usluge_wood_1')]
     },
     {
-      title: "CEMENTARE",
-      services: [
-        "Čišćenje silosa",
-        "Izvlačenje klinkera, cementa fine prašine i ugljene prašine"
-      ]
+      title: t('usluge_cement'),
+      services: [t('usluge_cement_1'), t('usluge_cement_2')]
     },
     {
-      title: "GRAĐEVINARSTVO I KOMUNALNE USLUGE",
-      services: [
-        "Skidanje šljunka, pijeska i substrata sa ravnih krovova...",
-        "Čišćenje separatora zauljenih voda, betonskih površina, fekalnih jama..."
-      ]
+      title: t('usluge_construction'),
+      services: [t('usluge_construction_1'), t('usluge_construction_2')]
     },
     {
-      title: "HEMIJSKA INDUSTRIJA I RAFINERIJE",
-      services: [
-        "Čišćenje različitih spremnika, kolona i izmjenjivača topline...",
-        "Vanjsko i unutarnje čišćenje auto i vagon cisterni"
-      ]
+      title: t('usluge_chemical'),
+      services: [t('usluge_chemical_1'), t('usluge_chemical_2')]
     },
     {
-      title: "ČELIČANE, LJEVAONICE, KOKSARE",
-      services: [
-        "Čišćenja kolosijeka, transportera, skladišta, taložnica...",
-        "Izvlačenje koksa, vapna, vatrostalnog materijala..."
-      ]
+      title: t('usluge_steel'),
+      services: [t('usluge_steel_1'), t('usluge_steel_2')]
     },
     {
-      title: "POSTROJENJA ZA PROČIŠĆAVANJE KOMUNALNIH OTPADNIH VODA",
-      services: [
-        "Izmjena šljunka, pijeska i drugih filter materijala",
-        "Čišćenje/odmuljivanje filtera, bistrilišta, separatora, tankova..."
-      ]
+      title: t('usluge_water'),
+      services: [t('usluge_water_1'), t('usluge_water_2')]
     }
   ];
 
@@ -99,27 +77,27 @@ function MiningServices() {
     <div className="main-container">
       <div className="content-wrapper">
         <header className="page-header">
-          <h1 className="main-title">INDUSTRIJSKE USLUGE</h1>
-          <p className="subtitle">Specijalizirane usluge za različite industrijske sektore</p>
+          <h1 className="main-title">{t('usluge_title')}</h1>
+          <p className="subtitle">{t('usluge_subtitle')}</p>
         </header>
 
         <div className="industries-grid">
           {industries.map((industry, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`industry-card ${openIndex === index ? 'active' : ''}`}
               style={{ height: openIndex === index ? 'auto' : '100px', minHeight: '100px' }}
             >
-              <div 
-                className="card-header" 
-                onClick={() => toggleSection(index)} 
+              <div
+                className="card-header"
+                onClick={() => toggleSection(index)}
                 style={{ cursor: 'pointer' }}
               >
                 <h2 className="industry-title">{industry.title}</h2>
               </div>
-              <div 
-                className="card-content" 
-                style={{ 
+              <div
+                className="card-content"
+                style={{
                   display: openIndex === index ? 'block' : 'none',
                   opacity: openIndex === index ? 1 : 0,
                   transition: 'opacity 0.3s ease'
@@ -139,7 +117,7 @@ function MiningServices() {
         </div>
 
         <footer className="page-footer">
-          <p>© 2025 Industrijske Usluge | Sva prava pridržana</p>
+          <p>{t('usluge_footer')}</p>
         </footer>
       </div>
     </div>

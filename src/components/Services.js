@@ -1,45 +1,34 @@
 import React from 'react';
 import '../styles/Services.css';
-
-const services = [
-  {
-    title: 'RUDARSTVO',
-    description: [
-      'Izvlačenje vacupress tehnikom ostataka ugljena, ugljene prašine, ugljenih muljeva',
-      'Čišćenje silosa, transportera, vagona, svodova, kolosijeka i dr.',
-      'Čišćenja u energetskim postrojenjima i kompresorskim stanicama'
-    ]
-  },
-  {
-    title: 'ENERGANE I TOPLANE',
-    description: [
-      'Usisavanje pepela, ugljena, koksa, ulja, zauljenih muljeva, trafo-ulja, gipsa, izolacionih materijala od turbina i cjevovoda',
-      'Čišćenje grijaćih površina, dimnih kanala, silosa, elektrofiltera, rashladnih tornjeva i šahtova'
-    ]
-  },
-  {
-    title: 'DRVNA INDUSTRIJA',
-    description: [
-      'Izvlačenje sječke, piljevine i drugih ostataka'
-    ]
-  },
-  {
-    title: 'CEMENTARE',
-    description: [
-      'Čišćenje silosa',
-      'Izvlačenje klinkera, cementa fine prašine i ugljene prašine'
-    ]
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      title: t('services_mining'),
+      description: [t('services_mining_1'), t('services_mining_2'), t('services_mining_3')]
+    },
+    {
+      title: t('services_energy'),
+      description: [t('services_energy_1'), t('services_energy_2')]
+    },
+    {
+      title: t('services_wood'),
+      description: [t('services_wood_1')]
+    },
+    {
+      title: t('services_cement'),
+      description: [t('services_cement_1'), t('services_cement_2')]
+    }
+  ];
+
   return (
     <div className="services-section">
       <div className="services-header">
-        <h1 className="services-title">Naše usluge</h1>
-        <p className="services-subtitle">
-          Nudimo širok spektar profesionalnih industrijskih usluga čišćenja prilagođenih vašim specifičnim potrebama.
-        </p>
+        <h1 className="services-title">{t('services_title')}</h1>
+        <p className="services-subtitle">{t('services_subtitle')}</p>
       </div>
 
       <div className="services-grid">

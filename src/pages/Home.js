@@ -2,42 +2,27 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Services from '../components/Services';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    message: ''
-  });
-
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false
-  });
+  const [formData, setFormData] = useState({ fullName: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState({ submitted: false, error: false });
+  const { t } = useLanguage();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!formData.fullName || !formData.email || !formData.message) {
       setFormStatus({ submitted: false, error: true });
       return;
     }
-
     try {
       console.log('Form submitted:', formData);
-      setFormData({
-        fullName: '',
-        email: '',
-        message: ''
-      });
+      setFormData({ fullName: '', email: '', message: '' });
       setFormStatus({ submitted: true, error: false });
     } catch (error) {
       console.error('Submission error:', error);
@@ -49,14 +34,14 @@ const Home = () => {
     <div className="app-container">
       <div className="home-container">
         <div className="content-wrapper">
-          <h1>Industrijsko Čišćenje Bez Kompromisa</h1>
-          <p>Preduzeće za pružanje usluga iz oblasti profesionalnog čišćenja prašine kod industrijskih i komunalnih objekata</p>
-          <Link to="/onama" className="contact-btn">Saznaj više o nama</Link>
+          <h1>{t('home_hero_title')}</h1>
+          <p>{t('home_hero_subtitle')}</p>
+          <Link to="/onama" className="contact-btn">{t('home_hero_btn')}</Link>
         </div>
       </div>
-      
+
       <Services />
-      
+
       <div className="sponsors-strip">
         <div className="sponsors-marquee">
           <img src="assets/klijenti/mital.png" alt="Sponsor 1" />
@@ -79,12 +64,12 @@ const Home = () => {
           <img src="assets/klijenti/termomatik.png" alt="Sponsor 9" />
         </div>
       </div>
-      
+
       <div className="contact-section">
         <div className="contact-container">
           <div className="contact-info">
-            <h2>Kontaktirajte Nas</h2>
-            <p>Imate pitanja ili želite više informacija? Popunite formular i mi ćemo vam se javiti što je prije moguće.</p>
+            <h2>{t('home_contact_title')}</h2>
+            <p>{t('home_contact_subtitle')}</p>
             <div className="contact-details">
               <div className="contact-detail">
                 <i className="fas fa-phone"></i>
@@ -96,7 +81,7 @@ const Home = () => {
               </div>
               <div className="contact-detail">
                 <i className="fas fa-map-marker-alt"></i>
-                <span>Adresa: Gornjozenička 42, Zenica, Bosna i Hercegovina</span>
+                <span>{t('home_contact_address')}</span>
               </div>
               <div className="contact-detail">
                 <a href="https://www.facebook.com/dustcompany" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-500 hover:underline">
@@ -106,10 +91,10 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
-              <label htmlFor="fullName">Puno Ime</label>
+              <label htmlFor="fullName">{t('home_form_name')}</label>
               <input
                 type="text"
                 id="fullName"
@@ -117,12 +102,12 @@ const Home = () => {
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
-                placeholder="Unesite vaše puno ime"
+                placeholder={t('home_form_name_placeholder')}
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="email">Email Adresa</label>
+              <label htmlFor="email">{t('home_form_email')}</label>
               <input
                 type="email"
                 id="email"
@@ -130,38 +115,32 @@ const Home = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                placeholder="Unesite vašu email adresu"
+                placeholder={t('home_form_email_placeholder')}
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="message">Poruka</label>
+              <label htmlFor="message">{t('home_form_message')}</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 required
-                placeholder="Unesite vašu poruku"
+                placeholder={t('home_form_message_placeholder')}
                 rows="5"
               ></textarea>
             </div>
-            
+
             {formStatus.error && (
-              <div className="error-message">
-                Molimo popunite sva polja ispravno.
-              </div>
+              <div className="error-message">{t('home_form_error')}</div>
             )}
-            
+
             {formStatus.submitted && (
-              <div className="success-message">
-                Vaša poruka je uspješno poslana. Javićemo vam se uskoro!
-              </div>
+              <div className="success-message">{t('home_form_success')}</div>
             )}
-            
-            <button type="submit" className="submit-btn">
-              Pošalji Poruku
-            </button>
+
+            <button type="submit" className="submit-btn">{t('home_form_submit')}</button>
           </form>
         </div>
       </div>
