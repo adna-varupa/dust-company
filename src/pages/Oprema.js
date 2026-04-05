@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../styles/Oprema.css';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function EquipmentGallery() {
   const [equipmentItems, setEquipmentItems] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [zoom, setZoom] = useState(2);
+  const [origin, setOrigin] = useState('50% 50%');
+  const wrapperRef = useRef(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -50,19 +53,61 @@ export default function EquipmentGallery() {
     }
   }, []);
 
+  // Attach wheel listener as non-passive so preventDefault works
+  useEffect(() => {
+    const modal = document.querySelector('.modal');
+    if (!modal) return;
+    const onWheel = (e) => {
+      e.preventDefault();
+      if (!wrapperRef.current) return;
+      const rect = wrapperRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      setOrigin(`${x}% ${y}%`);
+      setZoom(prev => Math.min(Math.max(prev - e.deltaY * 0.003, 1), 6));
+    };
+    modal.addEventListener('wheel', onWheel, { passive: false });
+    return () => modal.removeEventListener('wheel', onWheel);
+  }, [selectedImage]);
+
   const openModal = (specImage) => {
     setSelectedImage(specImage);
+    setZoom(2);
+    setOrigin('50% 50%');
     document.body.style.overflow = 'hidden';
   };
 
   const zatvoriModal = () => {
     setSelectedImage(null);
+    setZoom(2);
+    setOrigin('50% 50%');
     document.body.style.overflow = 'auto';
   };
 
   const handleModalClick = (e) => {
     if (e.target.classList.contains('modal')) zatvoriModal();
   };
+
+  const handleImageClick = useCallback((e) => {
+    e.stopPropagation();
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setOrigin(`${x}% ${y}%`);
+    setZoom(prev => prev >= 5 ? 2 : prev + 1);
+  }, []);
+
+  const handleRightClick = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setOrigin(`${x}% ${y}%`);
+    setZoom(prev => Math.max(prev - 1, 1));
+  }, []);
 
   return (
     <div className="equipment-page">
@@ -94,8 +139,20 @@ export default function EquipmentGallery() {
       {selectedImage && (
         <div className="modal" onClick={handleModalClick}>
           <div className="fullscreen-image-container">
-            <img src={selectedImage} alt="Equipment Specifications" className="fullscreen-image" />
-            <span className="zatvori" onClick={(e) => { e.stopPropagation(); zatvoriModal(); }}>×</span>
+            <div
+              ref={wrapperRef}
+              className="image-zoom-wrapper"
+              style={{
+                transform: `scale(${zoom})`,
+                transformOrigin: origin,
+                cursor: zoom >= 6 ? 'zoom-out' : 'zoom-in',
+              }}
+              onClick={handleImageClick}
+              onContextMenu={handleRightClick}
+            >
+              <img src={selectedImage} alt="Equipment Specifications" className="fullscreen-image" />
+              <button className="zatvori" onClick={(e) => { e.stopPropagation(); zatvoriModal(); }}>×</button>
+            </div>
           </div>
         </div>
       )}

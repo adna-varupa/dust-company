@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../styles/Galerija.css';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Galerija() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [zoom, setZoom] = useState(2);
+  const [origin, setOrigin] = useState('50% 50%');
+  const wrapperRef = useRef(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -47,31 +50,78 @@ export default function Galerija() {
     }
   }, []);
 
+  // Non-passive wheel listener for zoom-to-cursor
+  useEffect(() => {
+    const modal = document.querySelector('.gallery-modal');
+    if (!modal) return;
+    const onWheel = (e) => {
+      e.preventDefault();
+      if (!wrapperRef.current) return;
+      const rect = wrapperRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      setOrigin(`${x}% ${y}%`);
+      setZoom(prev => Math.min(Math.max(prev - e.deltaY * 0.003, 1), 6));
+    };
+    modal.addEventListener('wheel', onWheel, { passive: false });
+    return () => modal.removeEventListener('wheel', onWheel);
+  }, [selectedImage]);
+
   const openModal = (image) => {
     setSelectedImage(image);
+    setZoom(2);
+    setOrigin('50% 50%');
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedImage(null);
+    setZoom(2);
+    setOrigin('50% 50%');
     document.body.style.overflow = 'auto';
+  };
+
+  const resetZoom = () => {
+    setZoom(2);
+    setOrigin('50% 50%');
   };
 
   const prevImage = () => {
     const currentIndex = images.findIndex(img => img.id === selectedImage.id);
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
-    setSelectedImage(images[prevIndex]);
+    setSelectedImage(images[(currentIndex - 1 + images.length) % images.length]);
+    resetZoom();
   };
 
   const nextImage = () => {
     const currentIndex = images.findIndex(img => img.id === selectedImage.id);
-    const nextIndex = (currentIndex + 1) % images.length;
-    setSelectedImage(images[nextIndex]);
+    setSelectedImage(images[(currentIndex + 1) % images.length]);
+    resetZoom();
   };
 
   const handleModalClick = (e) => {
-    if (e.target.classList.contains('modal')) closeModal();
+    if (e.target.classList.contains('gallery-modal')) closeModal();
   };
+
+  const handleImageClick = useCallback((e) => {
+    e.stopPropagation();
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setOrigin(`${x}% ${y}%`);
+    setZoom(prev => prev >= 5 ? 2 : prev + 1);
+  }, []);
+
+  const handleRightClick = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setOrigin(`${x}% ${y}%`);
+    setZoom(prev => Math.max(prev - 1, 1));
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -113,17 +163,31 @@ export default function Galerija() {
       </div>
 
       {selectedImage && (
-        <div className="modal" onClick={handleModalClick}>
+        <div className="gallery-modal" onClick={handleModalClick}>
           <button className="nav-button prev-button" onClick={(e) => { e.stopPropagation(); prevImage(); }}>
             &#10094;
           </button>
+
           <div className="modal-content-wrapper">
-            <span className="close-button" onClick={closeModal}>×</span>
-            <img className="modal-content" src={selectedImage.src} alt={selectedImage.alt} />
+            <div
+              ref={wrapperRef}
+              className="image-zoom-wrapper"
+              style={{
+                transform: `scale(${zoom})`,
+                transformOrigin: origin,
+                cursor: zoom >= 6 ? 'zoom-out' : 'zoom-in',
+              }}
+              onClick={handleImageClick}
+              onContextMenu={handleRightClick}
+            >
+              <img className="modal-content" src={selectedImage.src} alt={selectedImage.alt} />
+              <button className="zatvori" onClick={(e) => { e.stopPropagation(); closeModal(); }}>×</button>
+            </div>
             <div className="image-counter">
               {images.findIndex(img => img.id === selectedImage.id) + 1} / {images.length}
             </div>
           </div>
+
           <button className="nav-button next-button" onClick={(e) => { e.stopPropagation(); nextImage(); }}>
             &#10095;
           </button>
