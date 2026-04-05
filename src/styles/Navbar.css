@@ -62,7 +62,7 @@ nav {
   bottom: -5px;
   left: 0;
   width: 0;
-  height: 3px; /* Slightly thinner underline */
+  height: 3px;
   background-color: rgb(202, 0, 0);
   transition: width 0.3s ease;
 }
