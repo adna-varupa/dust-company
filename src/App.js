@@ -9,6 +9,7 @@ import Usluge from './pages/Usluge';
 import Contact from './pages/Contact';
 import Galerija from './pages/Galerija';
 import Oprema from './pages/Oprema';
+import Reference from './pages/Reference';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/usluge" element={<Usluge />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/galerija" element={<Galerija />} />
+          <Route path="/reference" element={<Reference />} />
         </Routes>
       </div>
       <Footer />

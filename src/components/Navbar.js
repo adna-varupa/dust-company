@@ -49,7 +49,7 @@ const Navbar = () => {
           <li><Link to="/usluge" onClick={closeMenu}>Usluge</Link></li>
           <li><Link to="/oprema" onClick={closeMenu}>Tehnička specifikacija opreme</Link></li>
           <li><Link to="/galerija" onClick={closeMenu}>Galerija</Link></li>
-          <li><Link to="/references" onClick={closeMenu}>Reference</Link></li>
+          <li><Link to="/reference" onClick={closeMenu}>Reference</Link></li>
           <li><Link to="/contact" onClick={closeMenu}>Kontakt</Link></li>
         </ul>
       </div>

@@ -93,7 +93,7 @@ export default function EquipmentGallery() {
         });
       };
     }
-  }, []);
+  }, []); 
   
   const openModal = (specImage) => {
     setSelectedImage(specImage);
