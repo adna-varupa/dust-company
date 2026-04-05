@@ -63,11 +63,20 @@ const Home = () => {
           <img src="assets/klijenti/bolnica.png" alt="Sponsor 2" />
           <img src="assets/klijenti/carmeuse.png" alt="Sponsor 3" />
           <img src="assets/klijenti/cimos.png" alt="Sponsor 4" />
-          <img src="assets/klijenti/elektro.png" alt="Sponsor 4" />
-          <img src="assets/klijenti/natron.png" alt="Sponsor 4" />
-          <img src="assets/klijenti/sisecam.png" alt="Sponsor 4" />
-          <img src="assets/klijenti/treasure.png" alt="Sponsor 4" />
-          <img src="assets/klijenti/termomatik.png" alt="Sponsor 4" />
+          <img src="assets/klijenti/elektro.png" alt="Sponsor 5" />
+          <img src="assets/klijenti/natron.png" alt="Sponsor 6" />
+          <img src="assets/klijenti/sisecam.png" alt="Sponsor 7" />
+          <img src="assets/klijenti/treasure.png" alt="Sponsor 8" />
+          <img src="assets/klijenti/termomatik.png" alt="Sponsor 9" />
+          <img src="assets/klijenti/mital.png" alt="Sponsor 1" />
+          <img src="assets/klijenti/bolnica.png" alt="Sponsor 2" />
+          <img src="assets/klijenti/carmeuse.png" alt="Sponsor 3" />
+          <img src="assets/klijenti/cimos.png" alt="Sponsor 4" />
+          <img src="assets/klijenti/elektro.png" alt="Sponsor 5" />
+          <img src="assets/klijenti/natron.png" alt="Sponsor 6" />
+          <img src="assets/klijenti/sisecam.png" alt="Sponsor 7" />
+          <img src="assets/klijenti/treasure.png" alt="Sponsor 8" />
+          <img src="assets/klijenti/termomatik.png" alt="Sponsor 9" />
         </div>
       </div>
       
