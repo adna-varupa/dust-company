@@ -41,54 +41,70 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
-      <div className="contact-container">
-        <div className="contact-info">
-          <h2>{t('contact_title')}</h2>
-          <p>{t('contact_subtitle')}</p>
-          <div className="contact-details">
-            <div className="contact-detail">
-              <i className="fas fa-phone"></i>
-              <span>+387 (0)61 47 88 63</span>
+      <div className="contact-layout">
+        <div className="contact-container">
+          <div className="contact-info">
+            <h2>{t('contact_title')}</h2>
+            <p>{t('contact_subtitle')}</p>
+            <div className="contact-details">
+              <div className="contact-detail">
+                <i className="fas fa-phone"></i>
+                <span>+387 (0)61 47 88 63</span>
+              </div>
+              <div className="contact-detail">
+                <i className="fas fa-envelope"></i>
+                <span>info@dustcompany.ba</span>
+              </div>
+              <div className="contact-detail">
+                <i className="fas fa-map-marker-alt"></i>
+                <span>Gornjozenička 42, Zenica, Bosna i Hercegovina</span>
+              </div>
+              <div className="contact-detail">
+                <i className="fab fa-facebook"></i>
+                <a href="https://www.facebook.com/dust.company" target="_blank" rel="noopener noreferrer">
+                  Dust Company
+                </a>
+              </div>
             </div>
-            <div className="contact-detail">
-              <i className="fas fa-envelope"></i>
-              <span>info@dustcompany.ba</span>
-            </div>
-            <div className="contact-detail">
-              <i className="fas fa-map-marker-alt"></i>
-              <span>Gornjozenička 42, Zenica, Bosna i Hercegovina</span>
-            </div>
-            <div className="contact-detail">
-              <i className="fab fa-facebook"></i>
-              <a href="https://www.facebook.com/dust.company" target="_blank" rel="noopener noreferrer">
-                Dust Company
-              </a>
-            </div>
+          </div>
+
+          <div className="contact-form">
+            <form onSubmit={handleSubmit}>
+              {status.submitted && (
+                <div className="success-message">{t('contact_success')}</div>
+              )}
+              {status.error && (
+                <div className="error-message">Slanje nije uspjelo. Pokušajte ponovo.</div>
+              )}
+
+              <label>{t('contact_name')}</label>
+              <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+
+              <label>Email</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+
+              <label>{t('contact_message')}</label>
+              <textarea name="message" value={formData.message} onChange={handleChange} rows="5" required />
+
+              <button type="submit" disabled={status.loading}>
+                {status.loading ? '...' : t('contact_submit')}
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className="contact-form">
-          <form onSubmit={handleSubmit}>
-            {status.submitted && (
-              <div className="success-message">{t('contact_success')}</div>
-            )}
-            {status.error && (
-              <div className="error-message">Slanje nije uspjelo. Pokušajte ponovo.</div>
-            )}
-
-            <label>{t('contact_name')}</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-
-            <label>Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-
-            <label>{t('contact_message')}</label>
-            <textarea name="message" value={formData.message} onChange={handleChange} rows="5" required />
-
-            <button type="submit" disabled={status.loading}>
-              {status.loading ? '...' : t('contact_submit')}
-            </button>
-          </form>
+        <div className="contact-map">
+          <div className="contact-map-header">
+            <i className="fas fa-map-marker-alt"></i>
+            <span>Pronađite nas na adresi:</span>
+          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2859.7421868969777!2d17.901643699999997!3d44.212376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ee20cca623c95%3A0x668d3cd52a59134e!2sDust%20Company%20Zenica!5e0!3m2!1sen!2sba!4v1775396273799!5m2!1sen!2sba"
+            title="Dust Company Zenica"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
     </div>
