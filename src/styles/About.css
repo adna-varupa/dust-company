@@ -72,20 +72,27 @@ body {
 
 @media (max-width: 768px) {
     .about-container {
-        padding: 30px;
-        margin: 40px;
+        padding: 24px 20px;
+        margin: 20px 16px;
+        border-radius: 14px;
     }
 
     .about-header h2 {
-        font-size: 28px;
+        font-size: 22px;
+        margin-bottom: 14px;
     }
 
     .about-content p {
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 1.7;
+        padding: 0;
+        margin-bottom: 20px;
+        text-align: left;
     }
 
     .contact-btn {
-        font-size: 16px;
-        padding: 12px 20px;
+        font-size: 15px;
+        padding: 12px 24px;
+        display: inline-block;
     }
 }

@@ -254,19 +254,49 @@
   }
 
   .gallery-container {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
   }
 
+  .gallery-modal {
+    padding: 0;
+  }
+
+  .modal-content-wrapper {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+
   .modal-content {
-    max-height: 80vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    border: none;
+    border-radius: 0;
   }
 
   .nav-button {
-    width: 38px;
-    height: 38px;
-    font-size: 16px;
-    margin: 0 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .prev-button { left: 8px; }
+  .next-button { right: 8px; }
+
+  .image-counter {
+    bottom: 16px;
+    font-size: 12px;
+  }
+
+  .zatvori {
+    top: -10px;
+    right: -10px;
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
   }
 }
 
