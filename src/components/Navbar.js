@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 import { useLanguage } from '../context/LanguageContext';
+import { FaHome, FaInfoCircle, FaCogs, FaWrench, FaImages, FaStar, FaEnvelope } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,14 +38,17 @@ const Navbar = () => {
         <span></span>
       </div>
       <div className={`nav-links-container ${isOpen ? 'active' : ''}`}>
+        <button className="menu-close-btn" onClick={closeMenu}>
+          &#8592; Nazad
+        </button>
         <ul>
-          <li><Link to="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
-          <li><Link to="/onama" onClick={closeMenu}>{t('nav_about')}</Link></li>
-          <li><Link to="/usluge" onClick={closeMenu}>{t('nav_services')}</Link></li>
-          <li><Link to="/oprema" onClick={closeMenu}>{t('nav_equipment')}</Link></li>
-          <li><Link to="/galerija" onClick={closeMenu}>{t('nav_gallery')}</Link></li>
-          <li><Link to="/reference" onClick={closeMenu}>{t('nav_references')}</Link></li>
-          <li><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
+          <li><Link to="/" onClick={closeMenu}><FaHome className="nav-icon" />{t('nav_home')}</Link></li>
+          <li><Link to="/onama" onClick={closeMenu}><FaInfoCircle className="nav-icon" />{t('nav_about')}</Link></li>
+          <li><Link to="/usluge" onClick={closeMenu}><FaCogs className="nav-icon" />{t('nav_services')}</Link></li>
+          <li><Link to="/oprema" onClick={closeMenu}><FaWrench className="nav-icon" />{t('nav_equipment')}</Link></li>
+          <li><Link to="/galerija" onClick={closeMenu}><FaImages className="nav-icon" />{t('nav_gallery')}</Link></li>
+          <li><Link to="/reference" onClick={closeMenu}><FaStar className="nav-icon" />{t('nav_references')}</Link></li>
+          <li><Link to="/contact" onClick={closeMenu}><FaEnvelope className="nav-icon" />{t('nav_contact')}</Link></li>
           <li>
             <div className="lang-toggle">
               <span className={language === 'en' ? 'lang-active' : 'lang-inactive'} onClick={() => { if (language !== 'en') { toggleLanguage(); closeMenu(); } }}>EN</span>
