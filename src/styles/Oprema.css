@@ -1,304 +1,244 @@
 .equipment-page {
-    
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #0c0c0c;
-    padding-left: 20%;
-    padding-right: 20%;
-  }
-  
-  .equipment-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  .equipment-header h1 {
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  
-  .equipment-subtitle {
-    font-size: 1.2rem;
-    color: #fff;
-  }
-  
-  .equipment-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  
-  .equipment-item {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .equipment-item:hover {
-    transform: translateY(-5px);
-  }
-  
-  .image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 75%;
-  }
-  
-  .image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .equipment-name {
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-  }
-  
+  background-color: #0c0c0c;
+  min-height: 100vh;
+  padding: 60px 40px;
+}
+
+.equipment-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.equipment-header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.equipment-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}
+
+/* Grid */
+.equipment-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Card */
+.equipment-item {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: default;
+}
+
+.equipment-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  border-color: rgba(198,0,0,0.3);
+}
+
+/* Image area */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 65%;
+  background: #1a1a1a;
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.equipment-item:hover .image-wrapper img {
+  transform: scale(1.04);
+}
+
+/* Overlay */
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.equipment-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.view-specs-button {
+  background: #c60000;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.view-specs-button:hover {
+  background: #a60000;
+  transform: scale(1.05);
+}
+
+/* Name bar */
+.equipment-name {
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: #111;
+  border-top: 1px solid rgba(198,0,0,0.15);
+  letter-spacing: 0.3px;
+}
+
+/* Touch: always show overlay */
+@media (hover: none) {
   .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .equipment-item:hover .image-overlay {
     opacity: 1;
+    background: rgba(0,0,0,0.45);
   }
-  
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.fullscreen-image-container {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-zoom-wrapper {
+  position: relative;
+  display: inline-flex;
+  animation: zoomIn 0.25s ease-out;
+}
+
+.fullscreen-image {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.zatvori {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  background: #c60000;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1002;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.zatvori:hover {
+  background: #a60000;
+  transform: scale(1.15);
+}
+
+/* Animations */
+.fade-in { animation: fadeIn 0.5s ease-in; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .equipment-page {
+    padding: 50px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .equipment-page {
+    padding: 40px 16px;
+  }
+
+  .equipment-header h1 {
+    font-size: 2rem;
+  }
+
+  .equipment-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .equipment-name {
+    font-size: 0.8rem;
+    padding: 10px 12px;
+  }
+
   .view-specs-button {
-    background: rgb(182, 1, 1);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 0.78rem;
+    padding: 8px 14px;
   }
-  
-  .view-specs-button:hover {
-    background: rgb(133, 1, 1);
-  }
-  
-  /* Modal Styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .fullscreen-image-container {
-    position: relative;
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .equipment-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .image-zoom-wrapper {
-    position: relative;
-    display: inline-flex;
+  .equipment-header h1 {
+    font-size: 1.7rem;
   }
-
-  .fullscreen-image {
-    max-width: 90vw;
-    max-height: 88vh;
-    object-fit: contain;
-    display: block;
-    user-select: none;
-    pointer-events: none;
-  }
-
-  .zatvori {
-    position: absolute;
-    top: -14px;
-    right: -14px;
-    background: #c60000;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1002;
-    line-height: 1;
-    transition: background 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-
-  .zatvori:hover {
-    background: #a60000;
-    transform: scale(1.15);
-  }
-  
-  /* Animation */
-  .fade-in {
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Zoom animation for modal */
-  @keyframes zoomIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  .image-zoom-wrapper {
-    animation: zoomIn 0.3s ease-out;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 1200px) {
-    .equipment-container {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .equipment-container {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    
-    .equipment-header h1 {
-      font-size: 2rem;
-    }
-    
-    .view-specs-button {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-  
-    .close-button {
-      width: 35px;
-      height: 35px;
-      font-size: 30px;
-      top: 15px;
-      right: 15px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .equipment-container {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-  
-    .equipment-header h1 {
-      font-size: 1.8rem;
-    }
-  
-    .equipment-subtitle {
-      font-size: 1rem;
-    }
-  
-    .equipment-name {
-      font-size: 1.1rem;
-    }
-  
-    .close-button {
-      width: 30px;
-      height: 30px;
-      font-size: 24px;
-      top: 10px;
-      right: 10px;
-    }
-  }
-  
-  /* Touch Device Optimizations */
-  @media (hover: none) {
-    .image-overlay {
-      opacity: 1;
-      background: rgba(0, 0, 0, 0.5);
-    }
-  
-    .view-specs-button {
-      padding: 15px 30px;
-      font-size: 1.1rem;
-    }
-  }
-  
-  /* Dark Mode Support */
-  @media (prefers-color-scheme: dark) {
-    .equipment-item {
-      background: #2a2a2a;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-  
-    .equipment-name {
-      color: #fff;
-    }
-  
-    .view-specs-button {
-      background: rgb(190, 2, 2);
-    }
-  
-    .view-specs-button:hover {
-      background: rgb(150, 1, 1);
-    }
-  }
-  
-  /* Print Styles */
-  @media print {
-    .equipment-page {
-      padding: 0;
-    }
-  
-    .view-specs-button,
-    .image-overlay {
-      display: none;
-    }
-  
-    .equipment-item {
-      break-inside: avoid;
-      page-break-inside: avoid;
-      box-shadow: none;
-    }
-  }
+}

@@ -24,7 +24,8 @@ code {
 }
 
 .App:has(.app-container),
-.App:has(.about-container) {
+.App:has(.about-container),
+.App:has(.contact-page) {
   background-color: transparent;
 }
 
