@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import '../styles/Galerija.css';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -61,29 +61,33 @@ export default function Galerija() {
     document.body.style.overflow = 'hidden';
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedImage(null);
     setZoom(2);
     setOrigin('50% 50%');
     document.body.style.overflow = 'auto';
-  };
+  }, []);
 
-  const resetZoom = () => {
+  const resetZoom = useCallback(() => {
     setZoom(2);
     setOrigin('50% 50%');
-  };
+  }, []);
 
-  const prevImage = () => {
-    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
-    setSelectedImage(images[(currentIndex - 1 + images.length) % images.length]);
+  const prevImage = useCallback(() => {
+    setSelectedImage(prev => {
+      const currentIndex = images.findIndex(img => img.id === prev.id);
+      return images[(currentIndex - 1 + images.length) % images.length];
+    });
     resetZoom();
-  };
+  }, [images, resetZoom]);
 
-  const nextImage = () => {
-    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
-    setSelectedImage(images[(currentIndex + 1) % images.length]);
+  const nextImage = useCallback(() => {
+    setSelectedImage(prev => {
+      const currentIndex = images.findIndex(img => img.id === prev.id);
+      return images[(currentIndex + 1) % images.length];
+    });
     resetZoom();
-  };
+  }, [images, resetZoom]);
 
   const handleModalClick = (e) => {
     if (e.target.classList.contains('gallery-modal')) closeModal();
@@ -122,7 +126,7 @@ export default function Galerija() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, images]);
+  }, [selectedImage, prevImage, nextImage, closeModal]);
 
   return (
     <div className="gallery-page">
