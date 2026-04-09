@@ -29,10 +29,6 @@ code {
   background-color: transparent;
 }
 
-.App:has(.reference-container) {
-  background-color: #000;
-}
-
 @media (max-width: 900px) {
   .App {
     padding-top: 90px;
