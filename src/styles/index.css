@@ -16,11 +16,16 @@ code {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #0c0c0c;
 }
 
 .App {
   flex: 1;
+  background-color: #0c0c0c;
+}
+
+.App:has(.app-container),
+.App:has(.about-container) {
+  background-color: transparent;
 }
 
 @media (max-width: 900px) {
