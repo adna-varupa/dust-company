@@ -38,9 +38,6 @@ const Navbar = () => {
         <span></span>
       </div>
       <div className={`nav-links-container ${isOpen ? 'active' : ''}`}>
-        <button className="menu-close-btn" onClick={closeMenu}>
-          &#8592; Nazad
-        </button>
         <ul>
           <li><Link to="/" onClick={closeMenu}><FaHome className="nav-icon" />{t('nav_home')}</Link></li>
           <li><Link to="/onama" onClick={closeMenu}><FaInfoCircle className="nav-icon" />{t('nav_about')}</Link></li>

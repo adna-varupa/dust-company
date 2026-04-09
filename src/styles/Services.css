@@ -51,8 +51,12 @@
   border-color: rgba(198, 0, 0, 0.5);
 }
 
-.service-card-accent {
-  display: none;
+.service-card-icon {
+  font-size: 2rem;
+  color: #c60000;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
 }
 
 .service-card-title {
