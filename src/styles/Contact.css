@@ -19,10 +19,8 @@ main {
 .contact-page {
   background-color: transparent;
   color: white;
-  padding: 15px;
-  padding-top: 70px; /* Space for navbar */
-  padding-bottom: 30px;
-  min-height: 65vh; /* Push footer down */
+  padding: 24px 15px 40px;
+  min-height: 65vh;
 }
 
 .contact-container {
@@ -247,9 +245,7 @@ main {
 /* Tablet and larger screens */
 @media (min-width: 768px) {
   .contact-page {
-    padding: 30px;
-    padding-top: 100px; /* Space for navbar */
-    padding-bottom: 40px;
+    padding: 40px 30px;
     min-height: 70vh;
   }
   

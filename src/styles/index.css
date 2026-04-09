@@ -22,6 +22,12 @@ code {
   flex: 1;
 }
 
+@media (max-width: 900px) {
+  .App {
+    padding-top: 90px;
+  }
+}
+
 /* Your existing styles */
 
 /* Custom Scrollbar Styles */

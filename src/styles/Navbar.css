@@ -169,7 +169,7 @@ nav {
   }
 
   body {
-    padding-top: 100px; /* Reduced to match new nav height */
+    padding-top: 0;
   }
 
   .logo-container {
