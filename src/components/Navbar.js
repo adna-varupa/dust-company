@@ -29,15 +29,16 @@ const Navbar = () => {
           <img src="/assets/logoo.png" alt="Logo" className="logo" />
         </Link>
       </div>
-      <div
-        className={`hamburger ${isOpen ? 'active' : ''}`}
-        onClick={toggleMenu}
-      >
+      <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
       <div className={`nav-links-container ${isOpen ? 'active' : ''}`}>
+        <div className="mobile-menu-header">
+          <img src="/assets/logoo.png" alt="Logo" className="mobile-menu-logo" />
+          <div className="mobile-menu-divider" />
+        </div>
         <ul>
           <li><Link to="/" onClick={closeMenu}><FaHome className="nav-icon" />{t('nav_home')}</Link></li>
           <li><Link to="/onama" onClick={closeMenu}><FaInfoCircle className="nav-icon" />{t('nav_about')}</Link></li>

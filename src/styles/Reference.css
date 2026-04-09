@@ -53,14 +53,31 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .reference-container {
-    padding: 30px 20px;
+    padding: 20px 16px 40px;
+    align-items: flex-start;
+    min-height: unset;
   }
-  
+
+  .reference-content {
+    padding-top: 0;
+  }
+
   .reference-content h1 {
-    font-size: 36px;
+    font-size: 28px;
+    margin-bottom: 12px;
   }
-  
+
   .reference-content p {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding: 0 4px;
+  }
+
+  .reference-image-container {
+    padding: 0;
+  }
+
+  .reference-image {
+    border-radius: 8px;
   }
 }
