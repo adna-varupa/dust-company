@@ -7,6 +7,11 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      <div className="footer-logo">
+        <img src="/assets/logoo.png" alt="Dust Company" />
+      </div>
+      <div className="footer-divider" />
+
       <div className="footer-content">
         <div className="footer-section">
           <h3>{t('footer_address')}</h3>
@@ -29,6 +34,10 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p className="footer-copy">© {new Date().getFullYear()} Dust Company. All rights reserved.</p>
       </div>
     </footer>
   );

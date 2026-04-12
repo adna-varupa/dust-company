@@ -86,10 +86,6 @@ function MiningServices() {
           </div>
         ))}
       </div>
-
-      <footer className="usluge-footer">
-        <p>{t('usluge_footer')}</p>
-      </footer>
     </div>
   );
 }

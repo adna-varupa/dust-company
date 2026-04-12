@@ -122,7 +122,12 @@ body {
 /* Contact section styles */
 
 .contact-section {
-  background-color: #000;
+  background-color: #080808;
+  background-image:
+    linear-gradient(rgba(198, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 0, 0, 0.04) 1px, transparent 1px),
+    radial-gradient(ellipse 60% 60% at 80% 50%, rgba(198, 0, 0, 0.07) 0%, transparent 70%);
+  background-size: 60px 60px, 60px 60px, 100% 100%;
   padding: 80px 0;
   color: #fff;
 }

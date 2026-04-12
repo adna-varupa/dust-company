@@ -1,113 +1,135 @@
 .footer {
-  background-color: #000;
+  background-color: #080808;
   color: white;
-  padding: 15px 20px;
-  text-align: center;
-  border-top: 2px solid #c60000;
-  font-size: 16px; /* Slightly larger base font size */
+  padding: 0;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #c60000 30%, #c60000 70%, transparent);
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 6px;
+}
+
+.footer-logo img {
+  height: 70px;
+  width: auto;
+  opacity: 0.9;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 2px;
+  background: #c60000;
+  margin: 0 auto 20px;
+  border-radius: 2px;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  max-width: 1200px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 800px;
   margin: 0 auto;
-}
-
-.footer-section {
-  padding: 0;
+  padding: 0 40px 24px;
+  text-align: center;
 }
 
 .footer-section h3 {
-  font-size: 18px; /* Increased from 14px */
-  font-weight: 600;
-  color: #e60000;
-  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #c60000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .footer-section p {
-  font-size: 14px; /* Increased from 10px */
-  color: #ccc;
-  line-height: 1.4;
-  margin-bottom: 5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0;
 }
 
 .footer-social {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
+  margin-top: 4px;
 }
 
 .footer-social .facebook-btn {
-  background-color: #c60000;
-  color: white;
-  padding: 6px 12px; 
-  font-size: 14px; /* Increased from 12px */
+  background: rgba(198, 0, 0, 0.15);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 12px;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 6px;
+  border: 1px solid rgba(198, 0, 0, 0.4);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .footer-social .facebook-btn i {
-  margin-right: 8px;
+  font-size: 15px;
+  color: #c60000;
+}
+
+.footer-social .facebook-btn:hover {
+  background: rgba(198, 0, 0, 0.3);
+  border-color: rgba(198, 0, 0, 0.7);
+  transform: translateY(-2px);
 }
 
 .footer-bottom {
-  margin-top: 20px;
-  font-size: 14px; /* Increased from 10px */
-  color: #999;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px 40px;
+  text-align: center;
 }
 
 .footer-copy {
-  font-size: 14px; /* Increased from 10px */
-  color: #999;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.5px;
 }
 
-.footer-link {
-  font-size: 14px; /* Increased from 10px */
-  color: #999;
-}
-
-.footer-link-text {
-  color: #e60000;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-/* Responsive Design */
+/* Mobile */
 @media (max-width: 768px) {
-  .footer {
-    padding: 24px 16px;
+  .footer-logo img {
+    height: 55px;
   }
 
   .footer-content {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
+    gap: 28px;
+    padding: 0 20px 32px;
   }
 
   .footer-section:last-child {
     grid-column: 1 / -1;
-    text-align: center;
-  }
-
-  .footer-section:last-child .footer-social {
-    justify-content: center;
   }
 
   .footer-section h3 {
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    font-size: 10px;
   }
 
-  .footer-section p {
-    font-size: 13px;
-    color: #bbb;
+  .footer-section p,
+  .footer-social .facebook-btn {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    padding: 14px 20px;
   }
 }
