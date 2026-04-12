@@ -9,7 +9,26 @@ export default function EquipmentGallery() {
   const [origin, setOrigin] = useState('50% 50%');
   const wrapperRef = useRef(null);
   const lastTouchDist = useRef(null);
+  const itemsRef = useRef([]);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (!isMobile) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('pop-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    itemsRef.current.forEach((el) => { if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, [equipmentItems]);
 
   useEffect(() => {
     const equipmentData = [
@@ -157,7 +176,7 @@ export default function EquipmentGallery() {
           <div
             className="equipment-item"
             key={item.id}
-            style={{ animationDelay: `${index * 50}ms` }}
+            ref={(el) => (itemsRef.current[index] = el)}
           >
             <div className="image-wrapper">
               <img src={item.image} alt={item.name} loading="lazy" />
