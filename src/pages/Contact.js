@@ -41,11 +41,9 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
-      <div className="contact-layout">
+<div className="contact-layout">
         <div className="contact-container">
           <div className="contact-info">
-            <h2>{t('contact_title')}</h2>
-            <p>{t('contact_subtitle')}</p>
             <div className="contact-details">
               <div className="contact-detail">
                 <i className="fas fa-phone"></i>

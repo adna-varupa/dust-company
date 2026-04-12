@@ -4,6 +4,8 @@ import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import VideoBackground from './components/VideoBackground';
+import ScrollToTop from './components/ScrollToTop';
+import PageTransition from './components/PageTransition';
 import Home from './pages/Home';  
 import About from './pages/About';
 import Usluge from './pages/Usluge';
@@ -20,17 +22,20 @@ function App() {
         <VideoBackground />
         <Navbar />
         <div className="App">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/onama" element={<About />} />
-            <Route path="/oprema" element={<Oprema />} />
-            <Route path="/usluge" element={<Usluge />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/galerija" element={<Galerija />} />
-            <Route path="/reference" element={<Reference />} />
-          </Routes>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/onama" element={<About />} />
+              <Route path="/oprema" element={<Oprema />} />
+              <Route path="/usluge" element={<Usluge />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/galerija" element={<Galerija />} />
+              <Route path="/reference" element={<Reference />} />
+            </Routes>
+          </PageTransition>
         </div>
         <Footer />
+        <ScrollToTop />
       </Router>
     </LanguageProvider>
   );

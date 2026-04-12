@@ -130,6 +130,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .usluge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .usluge-page {
     padding: 40px 16px;
@@ -140,7 +146,7 @@
   }
 
   .usluge-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 
@@ -159,5 +165,11 @@
 
   .usluge-card-list li {
     font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .usluge-grid {
+    grid-template-columns: 1fr;
   }
 }

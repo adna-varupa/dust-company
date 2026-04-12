@@ -39,7 +39,7 @@ export default function EquipmentGallery() {
       { id: 5, image: '/oprema/oprema55.png', name: 'Industrijski usisivač MV 918', specImage: '/oprema/oprema5.png' },
       { id: 6, image: '/oprema/oprema66.png', name: 'Industrijski usisivač MAX-VAC', specImage: '/oprema/oprema6.png' },
       { id: 7, image: '/oprema/oprema77.png', name: 'Industrijski usisivač Wieland', specImage: '/oprema/oprema7.png' },
-      { id: 8, image: '/oprema/oprema88.png', name: 'Industrijski usisivač VacPro', specImage: '/oprema/oprema7.png' },
+      { id: 8, image: '/oprema/oprema88.png', name: 'Industrijski usisivač VacPro', specImage: '/oprema/oprema8.png' },
       { id: 9, image: '/oprema/oprema99.png', name: t('oprema_metilica'), specImage: '/oprema/oprema9.png' },
     ];
     setEquipmentItems(equipmentData);

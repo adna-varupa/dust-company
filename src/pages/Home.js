@@ -58,6 +58,7 @@ const Home = () => {
       <Services />
 
       <div className="sponsors-strip">
+        <div className="sponsors-track">
         <div className="sponsors-marquee">
           <img src="assets/klijenti/mital.png" alt="Sponsor 1" />
           <img src="assets/klijenti/bolnica.png" alt="Sponsor 2" />
@@ -77,6 +78,7 @@ const Home = () => {
           <img src="assets/klijenti/sisecam.png" alt="Sponsor 7" />
           <img src="assets/klijenti/treasure.png" alt="Sponsor 8" />
           <img src="assets/klijenti/termomatik.png" alt="Sponsor 9" />
+        </div>
         </div>
       </div>
 

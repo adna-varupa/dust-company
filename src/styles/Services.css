@@ -1,10 +1,5 @@
 .services-section {
   background-color: #080808;
-  background-image:
-    linear-gradient(rgba(198, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198, 0, 0, 0.04) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(198, 0, 0, 0.08) 0%, transparent 70%);
-  background-size: 60px 60px, 60px 60px, 100% 100%;
   color: #fff;
   padding: 80px 50px;
 }

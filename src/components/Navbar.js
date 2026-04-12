@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../styles/Navbar.css';
 import { useLanguage } from '../context/LanguageContext';
 import { FaHome, FaInfoCircle, FaCogs, FaWrench, FaImages, FaStar, FaEnvelope } from 'react-icons/fa';
@@ -25,9 +25,9 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo-container">
-        <Link to="/" onClick={closeMenu}>
+        <NavLink to="/" onClick={closeMenu}>
           <img src="/assets/logoo.png" alt="Logo" className="logo" />
-        </Link>
+        </NavLink>
       </div>
       <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
         <span></span>
@@ -40,13 +40,13 @@ const Navbar = () => {
           <div className="mobile-menu-divider" />
         </div>
         <ul>
-          <li><Link to="/" onClick={closeMenu}><FaHome className="nav-icon" />{t('nav_home')}</Link></li>
-          <li><Link to="/onama" onClick={closeMenu}><FaInfoCircle className="nav-icon" />{t('nav_about')}</Link></li>
-          <li><Link to="/usluge" onClick={closeMenu}><FaCogs className="nav-icon" />{t('nav_services')}</Link></li>
-          <li><Link to="/oprema" onClick={closeMenu}><FaWrench className="nav-icon" />{t('nav_equipment')}</Link></li>
-          <li><Link to="/galerija" onClick={closeMenu}><FaImages className="nav-icon" />{t('nav_gallery')}</Link></li>
-          <li><Link to="/reference" onClick={closeMenu}><FaStar className="nav-icon" />{t('nav_references')}</Link></li>
-          <li><Link to="/contact" onClick={closeMenu}><FaEnvelope className="nav-icon" />{t('nav_contact')}</Link></li>
+          <li><NavLink to="/" end onClick={closeMenu}><FaHome className="nav-icon" />{t('nav_home')}</NavLink></li>
+          <li><NavLink to="/onama" onClick={closeMenu}><FaInfoCircle className="nav-icon" />{t('nav_about')}</NavLink></li>
+          <li><NavLink to="/usluge" onClick={closeMenu}><FaCogs className="nav-icon" />{t('nav_services')}</NavLink></li>
+          <li><NavLink to="/oprema" onClick={closeMenu}><FaWrench className="nav-icon" />{t('nav_equipment')}</NavLink></li>
+          <li><NavLink to="/galerija" onClick={closeMenu}><FaImages className="nav-icon" />{t('nav_gallery')}</NavLink></li>
+          <li><NavLink to="/reference" onClick={closeMenu}><FaStar className="nav-icon" />{t('nav_references')}</NavLink></li>
+          <li><NavLink to="/contact" onClick={closeMenu}><FaEnvelope className="nav-icon" />{t('nav_contact')}</NavLink></li>
           <li>
             <div className="lang-toggle">
               <span className={language === 'en' ? 'lang-active' : 'lang-inactive'} onClick={() => { if (language !== 'en') { toggleLanguage(); closeMenu(); } }}>EN</span>
