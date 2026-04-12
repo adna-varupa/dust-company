@@ -70,59 +70,46 @@
   transform: scale(1.04);
 }
 
-/* Overlay */
-.image-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
+/* Name bar */
+.equipment-name {
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  justify-content: space-between;
+  gap: 10px;
+  background: #111;
+  border-top: 1px solid rgba(198,0,0,0.15);
 }
 
-.equipment-item:hover .image-overlay {
-  opacity: 1;
+.equipment-name span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+  flex: 1;
+  min-width: 0;
 }
 
 .view-specs-button {
   background: #c60000;
   color: white;
   border: none;
-  padding: 10px 22px;
+  padding: 7px 14px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   cursor: pointer;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .view-specs-button:hover {
   background: #a60000;
-  transform: scale(1.05);
 }
 
-/* Name bar */
-.equipment-name {
-  padding: 14px 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-  background: #111;
-  border-top: 1px solid rgba(198,0,0,0.15);
-  letter-spacing: 0.3px;
-}
-
-/* Touch: always show overlay */
-@media (hover: none) {
-  .image-overlay {
-    opacity: 1;
-    background: rgba(0,0,0,0.45);
-  }
-}
 
 /* Modal */
 .modal {

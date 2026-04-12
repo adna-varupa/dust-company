@@ -8,6 +8,7 @@ export default function EquipmentGallery() {
   const [zoom, setZoom] = useState(2);
   const [origin, setOrigin] = useState('50% 50%');
   const wrapperRef = useRef(null);
+  const lastTouchDist = useRef(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -32,7 +33,6 @@ export default function EquipmentGallery() {
       const originalBoxShadow = navbar.style.boxShadow;
       navbar.style.backgroundColor = '#000000';
       navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
-
       return () => {
         navbar.style.backgroundColor = originalBgColor;
         navbar.style.boxShadow = originalBoxShadow;
@@ -40,7 +40,7 @@ export default function EquipmentGallery() {
     }
   }, []);
 
-  // Attach wheel listener as non-passive so preventDefault works
+  // Non-passive wheel zoom
   useEffect(() => {
     const modal = document.querySelector('.modal');
     if (!modal) return;
@@ -57,18 +57,49 @@ export default function EquipmentGallery() {
     return () => modal.removeEventListener('wheel', onWheel);
   }, [selectedImage]);
 
+  // Non-passive touchmove for pinch zoom
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper || !selectedImage) return;
+    const onTouchMove = (e) => {
+      if (e.touches.length !== 2) return;
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      if (lastTouchDist.current) {
+        const delta = dist / lastTouchDist.current;
+        setZoom(prev => Math.min(Math.max(prev * delta, 1), 6));
+      }
+      lastTouchDist.current = dist;
+    };
+    wrapper.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => wrapper.removeEventListener('touchmove', onTouchMove);
+  }, [selectedImage]);
+
+  // Back button closes modal
+  useEffect(() => {
+    if (!selectedImage) return;
+    const onPopState = () => {
+      setSelectedImage(null);
+      setZoom(1);
+      setOrigin('50% 50%');
+      document.body.style.overflow = 'auto';
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [selectedImage]);
+
   const openModal = (specImage) => {
     setSelectedImage(specImage);
-    setZoom(2);
+    setZoom(1);
     setOrigin('50% 50%');
     document.body.style.overflow = 'hidden';
+    window.history.pushState({ modal: true }, '');
   };
 
   const zatvoriModal = () => {
-    setSelectedImage(null);
-    setZoom(2);
-    setOrigin('50% 50%');
-    document.body.style.overflow = 'auto';
+    window.history.back(); // triggers popstate → closes modal
   };
 
   const handleModalClick = (e) => {
@@ -96,6 +127,24 @@ export default function EquipmentGallery() {
     setZoom(prev => Math.max(prev - 1, 1));
   }, []);
 
+  const handleTouchStart = useCallback((e) => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      lastTouchDist.current = Math.hypot(dx, dy);
+      if (wrapperRef.current) {
+        const rect = wrapperRef.current.getBoundingClientRect();
+        const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+        const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+        setOrigin(`${((mx - rect.left) / rect.width) * 100}% ${((my - rect.top) / rect.height) * 100}%`);
+      }
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    lastTouchDist.current = null;
+  }, []);
+
   return (
     <div className="equipment-page">
       <div className="equipment-header">
@@ -112,13 +161,13 @@ export default function EquipmentGallery() {
           >
             <div className="image-wrapper">
               <img src={item.image} alt={item.name} loading="lazy" />
-              <div className="image-overlay">
-                <button className="view-specs-button" onClick={() => openModal(item.specImage)}>
-                  {t('oprema_view_specs')}
-                </button>
-              </div>
             </div>
-            <div className="equipment-name">{item.name}</div>
+            <div className="equipment-name">
+              <span>{item.name}</span>
+              <button className="view-specs-button" onClick={() => openModal(item.specImage)}>
+                {t('oprema_view_specs')}
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -136,6 +185,8 @@ export default function EquipmentGallery() {
               }}
               onClick={handleImageClick}
               onContextMenu={handleRightClick}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
             >
               <img src={selectedImage} alt="Equipment Specifications" className="fullscreen-image" />
               <button className="zatvori" onClick={(e) => { e.stopPropagation(); zatvoriModal(); }}>×</button>
